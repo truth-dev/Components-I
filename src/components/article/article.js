@@ -87,13 +87,71 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Harry Potter is the best!!',
+    date: 'March 3, 2021',
+    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
 
+
+     function articleMaker(articleObj){
+       const articleWrap = document.createElement('div')
+       const articleTitle = document.createElement('h2')
+       const articleDate = document.createElement ('p')
+       const articleParaOne = document.createElement('p')
+       const articleParaTwo = document.createElement('p')
+       const articleParaThree = document.createElement('p')
+       const expandButton = document.createElement('span')
+       
+       articleWrap.classList.add('article')
+       articleDate.classList.add('date')
+       expandButton.classList.add('expandButton')
+
+       articleWrap.appendChild(articleTitle);
+       articleWrap.appendChild(articleDate);
+       articleWrap.appendChild(articleParaOne);
+       articleWrap.appendChild(articleParaTwo);
+       articleWrap.appendChild(articleParaThree);
+       articleWrap.appendChild(expandButton);
+
+       articleTitle.textContent = articleObj.title;
+       articleDate.textContent = articleObj.date
+       articleParaOne.textContent = articleObj.firstParagraph;
+       articleParaTwo.textContent = articleObj.secondParagraph;
+       articleParaThree.textContent = articleObj.thirdParagraph;
+       expandButton.textContent = '+';
+       console.log(articleWrap);
+
+       expandButton.addEventListener('click',() =>{
+        articleWrap.classList.toggle('article-open');
+       })
+       return articleWrap;
+
+
+     }
+     data.forEach(article => {
+      document.querySelector('div.articles').appendChild(articleMaker(article));
+     })
+     
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
   Your component is a function that takes an article object as its only argument,
   and returns a DOM node looking like the one below:
+
+  
 
   <div class="article">
     <h2>{title of the article}</h2>
@@ -109,9 +167,11 @@ const data = [
 
   Step 3: Don't forget to return something from your function!
 
-  Step 4: Outside your function now, loop over the data. At each iteration you'll use your component
+  Step 4: Outside your function now, loop over the data. 
+      At each iteration you'll use your component
   to create a div.article element and append it to the DOM inside div.articles (see index.html).
 
-  Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
+  Step 5: Try adding new article object to the data array. Make sure it is in the same 
+  format as the others.
   Refresh the page to see the new article.
 */
